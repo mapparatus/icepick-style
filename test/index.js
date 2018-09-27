@@ -1,5 +1,5 @@
 const assert = require("assert");
-const ImmuatableStyle = require("../");
+const IcepickMapboxStyle = require("../");
 
 
 const emptyStyle = {
@@ -16,7 +16,7 @@ const tests = [
   {
     initial: emptyStyle,
     changeFn: function(obj) {
-      obj.changeRoot("name", "Foo bar");
+      obj.modifyRoot("name", "Foo bar");
     },
     expect: {
       "version": 8,
@@ -31,7 +31,7 @@ const tests = [
   {
     initial: emptyStyle,
     changeFn: function(obj) {
-      obj.changeRoot("light", {
+      obj.modifyRoot("light", {
         "anchor": "viewport",
         "color": "white",
         "intensity": 0.4
@@ -55,9 +55,8 @@ const tests = [
   {
     initial: emptyStyle,
     changeFn: function(obj) {
-      obj.addLayer({
+      obj.modifyLayer("background", {
         "type": "background",
-        "id": "background",
         "layout": {
           "visibility": "visible",
         },
@@ -89,25 +88,20 @@ const tests = [
   }
 ]
 
-describe("immuatable-style", function() {
+describe("icepick-mapbox-style", function() {
   tests.forEach(function(testObj, idx) {
     const label = `test ${idx}`;
 
     it(label, function() {
-      const obj = new ImmuatableStyle(testObj.initial);
+      const style = new IcepickMapboxStyle(testObj.initial);
 
-      testObj.changeFn(obj);
-      const objJSON = obj.toJSON()
-
-      assert.deepEqual(
-        testObj.expect,
-        objJSON
-      );
+      testObj.changeFn(style);
 
       assert.deepEqual(
         testObj.expect,
-        obj._data.toJSON()
+        style.current
       );
     })
   });
 });
+

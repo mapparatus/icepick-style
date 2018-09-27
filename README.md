@@ -1,29 +1,27 @@
-# mgl-style-automerge
-Automerge + MapboxGL styles
+# icepick-mapbox-style
+[Icepick](https://github.com/aearly/icepick) + [Mapbox style spec](https://www.mapbox.com/mapbox-gl-js/style-spec/)
 
 [![stability-unstable](https://img.shields.io/badge/stability-unstable-yellow.svg)][stability]
-[![Build Status](https://circleci.com/gh/orangemug/{proj}.png?style=shield)][circleci]
-[![Dependency Status](https://david-dm.org/orangemug/{proj}.svg)][dm-prod]
-[![Dev Dependency Status](https://david-dm.org/orangemug/{proj}/dev-status.svg)][dm-dev]
+[![Build Status](https://circleci.com/gh/orangemug/icepick-mapbox-style.png?style=shield)][circleci]
+[![Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style.svg)][dm-prod]
+[![Dev Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style/dev-status.svg)][dm-dev]
 
 [stability]:   https://github.com/orangemug/stability-badges#unstable
-[circleci]:    https://circleci.com/gh/orangemug/{proj}
-[dm-prod]:     https://david-dm.org/orangemug/{proj}
-[dm-dev]:      https://david-dm.org/orangemug/{proj}#info=devDependencies
+[circleci]:    https://circleci.com/gh/orangemug/icepick-mapbox-style
+[dm-prod]:     https://david-dm.org/orangemug/icepick-mapbox-style
+[dm-dev]:      https://david-dm.org/orangemug/icepick-mapbox-style#info=devDependencies
 
 Built for the [Maputnik editor](https://github.com/maputnik/editor), but should hopefully be generally useful.
 
 Why
 
- - If we have an immutable data structure we can improve rendering performance in UI like react by checking object equality
- - An immutable history of change that isn't simply a copy of the entire structure
-   - Hopefully this reduces memory footprint, need to confirm this
+ - If we have an immutable data structure we can improve rendering performance in react-like UI frameworks by checking object equality
+ - More robust by having a library to deal with changes
 
 Features
 
  - All changes get validated against the style spec
- - Helper methods for modifying data
- - Caches last valid state
+ - Helper methods for modifying data specific to the style spec
  - Can validate against any version of style spec
 
 
@@ -31,43 +29,101 @@ Features
 To install
 
 ```
-npm install orangemug/immuatable-mgl-style
+npm install orangemug/icepick-mapbox-style --save
 ```
 
 
 ## Usage
-From Automerge scoped to the current document
+General methods
 
- - `getHistory`
- - `merge`
- - `getChanges`
- - `applyChanges`
- - `canUndo`
- - `undo`
- - `canRedo`
- - `redo`
- - `diff`
- - `change` (validates on change)
+ - `current` - the current immutable object
+ - `history` - array of immutable objects
+ - `canUndo()`
+ - `undo()`
+ - `canRedo()`
+ - `redo()`
+ - `transaction(fn)`
 
-[MapboxGL spec](https://www.mapbox.com/mapbox-gl-js/style-spec) specific. Note these also validate on change
+[MapboxGL spec](https://www.mapbox.com/mapbox-gl-js/style-spec) specific. These methods are chainable
 
- - `root.modify(keyPath, modifier)`
- - `root.remove(keyPath)`
- - `layer.modify(id, modifier)`
- - `layer.remove(id)`
- - `source.modify(id, modifier)`
- - `source.remove(id)`
+ - `change(modifier)`
+ - `modifyRoot(keyPath, modifier)`
+ - `removeRoot(keyPath)`
+ - `modifyLayer(id, modifier)`
+ - `renameLayer(id, newId)`
+ - `removeLayer(id)`
+ - `modifySource(id, modifier)`
+ - `removeSource(id)`
+ - `renameSource(id, newId)`
+
+Note: These also validate the style after each change
 
 Where `modifier` is either a
 
- - [`Function`] as defined in the Automerge docs
+ - [`Function(obj)`]
    - `Function`'s can also return object which will diff'ed against the current value
- - [`Object`/`Array`] the change to make, note that this gets diffed
+ - [`Object`/`Array`/`Number`/`String`/`Boolean`] the change to make, note that this gets diffed against the source object
 
-Other methods
+Static methods
 
- - `doc` - a reference to the Automerge document
- - `forEachSnapshot(offset=0, limit=Number.MAX_SAFE_INTEGER)`
+ - `IcepickMapboxStyle.changes(styleOld, styleNew)` - Shortcut to [deep-diff]() as used internally by the library
+
+
+## Usage
+Creating a new style
+
+```
+const IcepickMapboxStyle = require("icepick-mapbox-style");
+
+const style = new IcepickMapboxStyle();
+
+style
+  .modifyRoot("name", "Test style")
+  .modifySource("openmaptiles", {...});
+
+// Sometime later....
+style
+  .modifySource("openmaptiles", function(doc) {
+    doc.maxZoom = 13;
+  });
+
+assert.equal(style.current.name, "Test style");
+
+const history = style.history();
+assert.equal(history.length, 2);
+```
+
+You can also start a transaction to group changes into a single history entry
+
+```
+const history = style
+  .transaction((style) => {
+    style
+      .modifyRoot("name", "Foo bar")
+      .modifyLayer((layer) => {
+        layer.maxZoom = 14;
+      })
+  })
+  .history()
+
+// Only a single history item
+assert.equal(history.length, 1);
+```
+
+
+## Caveats
+Avoid using `change(Function)` because this will cause a `thaw` and re-`freeze` in [icepick](https://github.com/aearly/icepick) as will as a `diff` of the entire object. Instead use the other root, layer and source methods.
+
+
+## FAQ
+
+> Why icepick and not immutable.js
+
+Well
+
+ 1. It's a "A tiny (1kb min/gzipped), zero-dependency library"
+ 2. It's fast <https://github.com/aearly/icepick-benchmarks>
+
 
 
 ## License
