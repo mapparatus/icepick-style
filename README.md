@@ -118,7 +118,7 @@ Avoid using `change(Function)` because this will cause a `thaw` and re-`freeze` 
 
 > Why icepick and not immutable.js
 
-Well
+Because
 
  1. It's a "tiny (1kb min/gzipped), zero-dependency library"
  2. It's fast <https://github.com/aearly/icepick-benchmarks>
