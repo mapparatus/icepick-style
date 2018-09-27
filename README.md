@@ -13,12 +13,12 @@ The library that combines [Icepick](https://github.com/aearly/icepick) and [Mapb
 
 Built for the [Maputnik editor](https://github.com/maputnik/editor), but should hopefully be generally useful.
 
-Why
+Why does this exist?
 
  - If we have an immutable data structure we can improve rendering performance in react-like UI frameworks by checking object equality
  - More robust by having a library to deal with changes
 
-Features
+Features include
 
  - All changes get validated against the style spec
  - Helper methods for modifying data specific to the style spec
@@ -33,7 +33,7 @@ npm install orangemug/icepick-mapbox-style --save
 ```
 
 
-## Usage
+## API
 General methods
 
  - `current` - the current immutable object
@@ -60,9 +60,9 @@ Note: These also validate the style after each change
 
 Where `modifier` is either a
 
- - [`Function(obj)`]
+ - `Function(obj)`
    - `Function`'s can also return object which will run a diff against the current object
- - [`Object`/`Array`/`Number`/`String`/`Boolean`] the change to make, note that this runs a diff against the source object
+ - `Object`/`Array`/`Number`/`String`/`Boolean` the change to make, note that this runs a diff against the source object
 
 Static methods
 
