@@ -62,11 +62,12 @@ Where `modifier` is either a
 
  - `Function(obj)`
    - `Function`'s can also return object which will run a diff against the current object
- - `Object`/`Array`/`Number`/`String`/`Boolean` the change to make, note that this runs a diff against the source object
+ - `Object`/`Array`/`Number`/`String`/`Boolean`
+   - The change to apply. Note, that this runs a diff against the source object
 
 Static methods
 
- - `IcepickMapboxStyle.changes(styleOld, styleNew)` - Shortcut to [deep-diff]() as used internally by the library
+ - `IcepickMapboxStyle.changes(styleOld, styleNew)` - Shortcut to [deep-diff](https://www.npmjs.com/package/deep-diff) as used internally by this library
 
 
 ## Usage
