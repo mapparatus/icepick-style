@@ -1,5 +1,5 @@
 # icepick-mapbox-style
-[Icepick](https://github.com/aearly/icepick) + [Mapbox style spec](https://www.mapbox.com/mapbox-gl-js/style-spec/)
+The library that combines [Icepick](https://github.com/aearly/icepick) and [Mapbox style spec](https://www.mapbox.com/mapbox-gl-js/style-spec/)
 
 [![stability-unstable](https://img.shields.io/badge/stability-unstable-yellow.svg)][stability]
 [![Build Status](https://circleci.com/gh/orangemug/icepick-mapbox-style.png?style=shield)][circleci]
@@ -61,8 +61,8 @@ Note: These also validate the style after each change
 Where `modifier` is either a
 
  - [`Function(obj)`]
-   - `Function`'s can also return object which will diff'ed against the current value
- - [`Object`/`Array`/`Number`/`String`/`Boolean`] the change to make, note that this gets diffed against the source object
+   - `Function`'s can also return object which will run a diff against the current object
+ - [`Object`/`Array`/`Number`/`String`/`Boolean`] the change to make, note that this runs a diff against the source object
 
 Static methods
 
@@ -72,7 +72,7 @@ Static methods
 ## Usage
 Creating a new style
 
-```
+```js
 const IcepickMapboxStyle = require("icepick-mapbox-style");
 
 const style = new IcepickMapboxStyle();
@@ -95,7 +95,7 @@ assert.equal(history.length, 2);
 
 You can also start a transaction to group changes into a single history entry
 
-```
+```js
 const history = style
   .transaction((style) => {
     style
@@ -121,7 +121,7 @@ Avoid using `change(Function)` because this will cause a `thaw` and re-`freeze` 
 
 Well
 
- 1. It's a "A tiny (1kb min/gzipped), zero-dependency library"
+ 1. It's a "tiny (1kb min/gzipped), zero-dependency library"
  2. It's fast <https://github.com/aearly/icepick-benchmarks>
 
 
