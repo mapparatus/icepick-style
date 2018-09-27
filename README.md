@@ -89,14 +89,13 @@ style
 
 assert.equal(style.current.name, "Test style");
 
-const history = style.history();
-assert.equal(history.length, 2);
+assert.equal(style.history.length, 2);
 ```
 
 You can also start a transaction to group changes into a single history entry
 
 ```js
-const history = style
+style
   .transaction((style) => {
     style
       .modifyRoot("name", "Foo bar")
@@ -104,10 +103,9 @@ const history = style
         layer.maxZoom = 14;
       })
   })
-  .history()
 
 // Only a single history item
-assert.equal(history.length, 1);
+assert.equal(style.history.length, 1);
 ```
 
 
