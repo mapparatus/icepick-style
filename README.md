@@ -1,12 +1,12 @@
 # icepick-mapbox-style
 The library that combines [Icepick](https://github.com/aearly/icepick) and [Mapbox style spec](https://www.mapbox.com/mapbox-gl-js/style-spec/)
 
-[![stability-unstable](https://img.shields.io/badge/stability-unstable-yellow.svg)][stability]
+[![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)][stability]
 [![Build Status](https://circleci.com/gh/orangemug/icepick-mapbox-style.png?style=shield)][circleci]
 [![Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style.svg)][dm-prod]
 [![Dev Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style/dev-status.svg)][dm-dev]
 
-[stability]:   https://github.com/orangemug/stability-badges#unstable
+[stability]:   https://github.com/orangemug/stability-badges#experimental
 [circleci]:    https://circleci.com/gh/orangemug/icepick-mapbox-style
 [dm-prod]:     https://david-dm.org/orangemug/icepick-mapbox-style
 [dm-dev]:      https://david-dm.org/orangemug/icepick-mapbox-style#info=devDependencies
