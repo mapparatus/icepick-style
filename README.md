@@ -46,7 +46,7 @@ General methods
 
 [MapboxGL spec](https://www.mapbox.com/mapbox-gl-js/style-spec) specific. These methods are chainable
 
- - `change(modifier)`
+ - `merge(modifier)`
  - `modifyRoot(keyPath, modifier)`
  - `removeRoot(keyPath)`
  - `modifyLayer(id, modifier)`
@@ -64,10 +64,6 @@ Where `modifier` is either a
    - `Function`'s can also return object which will run a diff against the current object
  - `Object`/`Array`/`Number`/`String`/`Boolean`
    - The change to apply. Note, that this runs a diff against the source object
-
-Static methods
-
- - `IcepickMapboxStyle.changes(styleOld, styleNew)` - Shortcut to [deep-diff](https://www.npmjs.com/package/deep-diff) as used internally by this library
 
 
 ## Usage
@@ -91,6 +87,9 @@ style
 assert.equal(style.current.name, "Test style");
 
 assert.equal(style.history.length, 2);
+assert.equal(style.current.sources.openmaptiles.maxZoom, 13);
+assert.equal(style.history[0].sources.openmaptiles.maxZoom, 16);
+
 ```
 
 You can also start a transaction to group changes into a single history entry
@@ -110,10 +109,6 @@ assert.equal(style.history.length, 1);
 ```
 
 
-## Caveats
-Avoid using `change(Function)` because this will cause a `thaw` and re-`freeze` in [icepick](https://github.com/aearly/icepick) as will as a `diff` of the entire object. Instead use the other root, layer and source methods.
-
-
 ## FAQ
 
 > Why icepick and not immutable.js
@@ -122,6 +117,15 @@ Because
 
  1. It's a "tiny (1kb min/gzipped), zero-dependency library"
  2. It's fast <https://github.com/aearly/icepick-benchmarks>
+
+
+
+## Ideas
+
+ - `current` - the current commited state
+ - `dirty` - the dirty un-commited state
+ - `commit()` - commit the changes to the history
+ - `rollback()` - reset dirty state to `current` state
 
 
 
