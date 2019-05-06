@@ -1,15 +1,15 @@
-# icepick-mapbox-style
+# icepick-style
 The library that combines [Icepick](https://github.com/aearly/icepick) and [Mapbox style spec](https://www.mapbox.com/mapbox-gl-js/style-spec/)
 
 [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)][stability]
-[![Build Status](https://circleci.com/gh/orangemug/icepick-mapbox-style.png?style=shield)][circleci]
-[![Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style.svg)][dm-prod]
-[![Dev Dependency Status](https://david-dm.org/orangemug/icepick-mapbox-style/dev-status.svg)][dm-dev]
+[![Build Status](https://circleci.com/gh/mgljs-contrib/icepick-mapbox-style.png?style=shield)][circleci]
+[![Dependency Status](https://david-dm.org/mgljs-contrib/icepick-mapbox-style.svg)][dm-prod]
+[![Dev Dependency Status](https://david-dm.org/mgljs-contrib/icepick-mapbox-style/dev-status.svg)][dm-dev]
 
-[stability]:   https://github.com/orangemug/stability-badges#experimental
-[circleci]:    https://circleci.com/gh/orangemug/icepick-mapbox-style
-[dm-prod]:     https://david-dm.org/orangemug/icepick-mapbox-style
-[dm-dev]:      https://david-dm.org/orangemug/icepick-mapbox-style#info=devDependencies
+[stability]:   https://github.com/mgljs-contrib/stability-badges#experimental
+[circleci]:    https://circleci.com/gh/mgljs-contrib/icepick-mapbox-style
+[dm-prod]:     https://david-dm.org/mgljs-contrib/icepick-mapbox-style
+[dm-dev]:      https://david-dm.org/mgljs-contrib/icepick-mapbox-style#info=devDependencies
 
 Built for the [Maputnik editor](https://github.com/maputnik/editor), but should hopefully be generally useful.
 
@@ -29,7 +29,7 @@ Features include
 To install
 
 ```
-npm install orangemug/icepick-mapbox-style --save
+npm install mgljs-contrib/icepick-mapbox-style --save
 ```
 
 
