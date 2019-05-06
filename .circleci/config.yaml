@@ -1,0 +1,28 @@
+version: 2
+templates:
+  test-steps: &test-steps
+    - checkout
+    - restore_cache:
+        key: v1-dependencies-{{ arch }}-{{ checksum "package.json" }}
+    - run: npm install
+    - save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ arch }}-{{ checksum "package.json" }}
+
+    - run: npm test
+    # - store_artifacts:
+    #     path: ./docs
+    #     destination: /artifacts
+jobs:
+  build-linux-node-v8:
+    docker:
+      - image: node:8
+    working_directory: ~/repo-linux-node-v8
+    steps: *test-steps
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-linux-node-v8
