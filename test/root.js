@@ -1,5 +1,5 @@
 const assert = require("assert");
-const IcepickMapboxStyle = require("../");
+const IcepickStyle = require("../");
 
 
 describe("root", () => {
@@ -12,7 +12,7 @@ describe("root", () => {
       describe(fnName, () => {
         ["layers", "sources"].forEach((key) => {
           it(key, () => {
-            const style = new IcepickMapboxStyle({
+            const style = new IcepickStyle({
               "version": 8,
               "sources": {},
               "layers": []
@@ -38,7 +38,7 @@ describe("root", () => {
 
     describe("name (string)", () => {
       it("new", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": []
@@ -55,7 +55,7 @@ describe("root", () => {
       });
 
       it("modify", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "name": "original",
           "sources": {},
@@ -73,7 +73,7 @@ describe("root", () => {
       });
 
       it("noop", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "name": "original",
           "sources": {},
@@ -94,7 +94,7 @@ describe("root", () => {
 
     describe("metadata (object)", () => {
       it("new", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": []
@@ -114,7 +114,7 @@ describe("root", () => {
       });
 
       it("modify", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -154,7 +154,7 @@ describe("root", () => {
       });
 
       it("noop ", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -196,7 +196,7 @@ describe("root", () => {
 
     describe("center (array)", () => {
       it("new", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -214,7 +214,7 @@ describe("root", () => {
       });
 
       it("modify", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -233,7 +233,7 @@ describe("root", () => {
       });
 
       it("noop ", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -254,7 +254,7 @@ describe("root", () => {
 
     describe("zoom (number)", () => {
       it("new", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -272,7 +272,7 @@ describe("root", () => {
       });
 
       it("modify", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -291,7 +291,7 @@ describe("root", () => {
       });
 
       it("noop ", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -316,7 +316,7 @@ describe("root", () => {
 
     describe("name (string)", () => {
       it("existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -333,7 +333,7 @@ describe("root", () => {
       });
 
       it("non existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -353,7 +353,7 @@ describe("root", () => {
     describe("metadata (object)", () => {
 
       it("existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -372,7 +372,7 @@ describe("root", () => {
       });
 
       it("non existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -392,7 +392,7 @@ describe("root", () => {
     describe("center (array)", () => {
 
       it("existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -409,7 +409,7 @@ describe("root", () => {
       });
 
       it("non existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": []
@@ -429,7 +429,7 @@ describe("root", () => {
     describe("zoom (number)", () => {
 
       it("existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],
@@ -446,7 +446,7 @@ describe("root", () => {
       });
 
       it("non existing", () => {
-        const style = new IcepickMapboxStyle({
+        const style = new IcepickStyle({
           "version": 8,
           "sources": {},
           "layers": [],

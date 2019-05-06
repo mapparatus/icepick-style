@@ -1,5 +1,5 @@
 const assert = require("assert");
-const IcepickMapboxStyle = require("../");
+const IcepickStyle = require("../");
 
 
 describe("layer", () => {
@@ -7,7 +7,7 @@ describe("layer", () => {
   describe("modifyLayer", () => {
 
     it("new no existing layers", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [],
@@ -31,7 +31,7 @@ describe("layer", () => {
     });
 
     it("new with existing layers", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -64,7 +64,7 @@ describe("layer", () => {
     });
 
     it("modify", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -101,7 +101,7 @@ describe("layer", () => {
     });
 
     it("noop", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -142,7 +142,7 @@ describe("layer", () => {
   describe("renameLayer", () => {
 
     it("missing id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -169,7 +169,7 @@ describe("layer", () => {
     });
 
     it("modify", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -201,7 +201,7 @@ describe("layer", () => {
     });
 
     it("noop", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -237,7 +237,7 @@ describe("layer", () => {
   describe("removeLayer", () => {
 
     it("missing id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [
@@ -269,7 +269,7 @@ describe("layer", () => {
     });
 
     it("valid id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [

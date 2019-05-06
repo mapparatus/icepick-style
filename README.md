@@ -56,18 +56,18 @@ General methods
  - `removeSource(id)`
  - `renameSource(id, newId)`
 
-Note: These also validate the style after each change
-
 Where `modifier` is either the new value.
+
+Note: These also validate the style after each change
 
 
 ## Usage
 Creating a new style
 
 ```js
-const IcepickMapboxStyle = require("icepick-style");
+const IcepickStyle = require("icepick-style");
 
-const style = new IcepickMapboxStyle();
+const style = new IcepickStyle();
 
 style
   .modifyRoot("name", "Test style")

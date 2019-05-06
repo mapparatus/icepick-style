@@ -1,10 +1,10 @@
 const assert = require("assert");
-const IcepickMapboxStyle = require("../");
+const IcepickStyle = require("../");
 
 
 describe("ops", () => {
   it("constructor(undefined)", () => {
-    const style = new IcepickMapboxStyle();
+    const style = new IcepickStyle();
     assert.equal(style.history.length, 1);
     assert.deepEqual(style.current, {
       "version": 8,
@@ -14,7 +14,7 @@ describe("ops", () => {
   });
 
   it("constructor([style])", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],
@@ -31,7 +31,7 @@ describe("ops", () => {
   });
 
   it("canUndo()", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],
@@ -43,7 +43,7 @@ describe("ops", () => {
   });
 
   it("undo()", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],
@@ -66,7 +66,7 @@ describe("ops", () => {
   });
 
   it("canRedo()", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],
@@ -78,7 +78,7 @@ describe("ops", () => {
   });
 
   it("redo()", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],
@@ -101,7 +101,7 @@ describe("ops", () => {
   });
 
   it("merge()", () => {
-    const style = new IcepickMapboxStyle({
+    const style = new IcepickStyle({
       "version": 8,
       "sources": {},
       "layers": [],

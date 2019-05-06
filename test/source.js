@@ -1,5 +1,5 @@
 const assert = require("assert");
-const IcepickMapboxStyle = require("../");
+const IcepickStyle = require("../");
 
 
 describe("source", () => {
@@ -7,7 +7,7 @@ describe("source", () => {
   describe("modifySource", () => {
 
     it("new with no existing sources", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {},
         "layers": [],
@@ -34,7 +34,7 @@ describe("source", () => {
     });
 
     it("new with existing sources", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "foo": {
@@ -70,7 +70,7 @@ describe("source", () => {
     });
 
     it("modify", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
@@ -102,7 +102,7 @@ describe("source", () => {
     });
 
     it("noop", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
@@ -137,7 +137,7 @@ describe("source", () => {
   describe("renameSource", () => {
 
     it("missing id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
@@ -174,7 +174,7 @@ describe("source", () => {
     });
 
     it("modify", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
@@ -204,7 +204,7 @@ describe("source", () => {
     });
 
     it("noop", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
@@ -237,7 +237,7 @@ describe("source", () => {
   describe("removeSource", () => {
 
     it("missing id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "foo": {
@@ -274,7 +274,7 @@ describe("source", () => {
     });
 
     it("valid id", () => {
-      const style = new IcepickMapboxStyle({
+      const style = new IcepickStyle({
         "version": 8,
         "sources": {
           "test-source": {
