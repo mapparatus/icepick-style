@@ -4,6 +4,36 @@ const IcepickMapboxStyle = require("../");
 
 describe("root", () => {
 
+  describe("invalid keys", () => {
+    [
+      ["modifyRoot", "modify"],
+      ["removeRoot", "remove"],
+    ].forEach(([fnName, modName]) => {
+      describe(fnName, () => {
+        ["layers", "sources"].forEach((key) => {
+          it(key, () => {
+            const style = new IcepickMapboxStyle({
+              "version": 8,
+              "sources": {},
+              "layers": []
+            });
+
+            let err;
+            try {
+              style[fnName](key, "foo")
+            }
+            catch (_err) {
+              err = _err;
+            }
+
+            assert(err);
+            assert.equal(err.message, `Can't ${modName} ${key} use ${modName}* methods instead`);
+          });
+        });
+      });
+    });
+  });
+
   describe("modifyRoot", () => {
 
     describe("name (string)", () => {
