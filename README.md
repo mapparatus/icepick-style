@@ -43,11 +43,10 @@ General methods
  - `undo()`
  - `canRedo()`
  - `redo()`
- - `transaction(fn)`
+ - `merge(styleObject)`
 
 [MapboxGL spec](https://www.mapbox.com/mapbox-gl-js/style-spec) specific. These methods are chainable
 
- - `merge(modifier)`
  - `modifyRoot(keyPath, modifier)`
  - `removeRoot(keyPath)`
  - `modifyLayer(id, modifier)`
@@ -59,12 +58,7 @@ General methods
 
 Note: These also validate the style after each change
 
-Where `modifier` is either a
-
- - `Function(obj)`
-   - `Function`'s can also return object which will run a diff against the current object
- - `Object`/`Array`/`Number`/`String`/`Boolean`
-   - The change to apply. Note, that this runs a diff against the source object
+Where `modifier` is either the new value.
 
 
 ## Usage
