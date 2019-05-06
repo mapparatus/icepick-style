@@ -1,5 +1,5 @@
 {
-  "name": "icepick-mapbox-style",
+  "name": "icepick-style",
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
