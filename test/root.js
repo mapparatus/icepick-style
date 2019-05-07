@@ -52,6 +52,10 @@ describe("root", () => {
           "sources": {},
           "layers": []
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("modify", () => {
@@ -70,6 +74,10 @@ describe("root", () => {
           "sources": {},
           "layers": []
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("noop", () => {
@@ -88,6 +96,10 @@ describe("root", () => {
           "sources": {},
           "layers": []
         });
+
+        assert.equal(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
     });
@@ -111,6 +123,10 @@ describe("root", () => {
             foo: 3
           }
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("modify", () => {
@@ -151,9 +167,15 @@ describe("root", () => {
             baz: {}
           }
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
+        assert.notEqual(style.current.metadata, style.history[0].metadata);
+        assert.equal(style.current.metadata.baz, style.history[0].metadata.baz);
       });
 
-      it("noop ", () => {
+      it("noop", () => {
         const style = new IcepickStyle({
           "version": 8,
           "sources": {},
@@ -191,6 +213,8 @@ describe("root", () => {
             baz: {}
           }
         })
+
+        assert.equal(style.current, style.history[0]);
       });
     });
 
@@ -211,6 +235,11 @@ describe("root", () => {
           "layers": [],
           "center": [0.222, 1.222]
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
+        assert.notEqual(style.current.center, style.history[0].center);
       });
 
       it("modify", () => {
@@ -230,6 +259,13 @@ describe("root", () => {
           "layers": [],
           "center": [0.222, 1.222]
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
+
+        // Note: We currently replace arrays if they differ
+        assert.notEqual(style.current.center, style.history[0].center);
       });
 
       it("noop ", () => {
@@ -249,6 +285,8 @@ describe("root", () => {
           "layers": [],
           "center": [0.111, 1.111]
         });
+
+        assert.equal(style.current, style.history[0]);
       });
     });
 
@@ -269,6 +307,10 @@ describe("root", () => {
           "layers": [],
           "zoom": 2
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("modify", () => {
@@ -288,6 +330,10 @@ describe("root", () => {
           "layers": [],
           "zoom": 2
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("noop ", () => {
@@ -307,6 +353,8 @@ describe("root", () => {
           "layers": [],
           "zoom": 2
         });
+
+        assert.equal(style.current, style.history[0]);
       });
     });
 
@@ -330,6 +378,10 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("non existing", () => {
@@ -346,6 +398,8 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.equal(style.current, style.history[0]);
       });
 
     });
@@ -369,6 +423,10 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("non existing", () => {
@@ -385,6 +443,8 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.equal(style.current, style.history[0]);
       });
 
     });
@@ -406,6 +466,10 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("non existing", () => {
@@ -422,6 +486,8 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.equal(style.current, style.history[0]);
       });
 
     });
@@ -443,6 +509,10 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.notEqual(style.current, style.history[0]);
+        assert.equal(style.current.sources, style.history[0].sources);
+        assert.equal(style.current.layers, style.history[0].layers);
       });
 
       it("non existing", () => {
@@ -459,6 +529,8 @@ describe("root", () => {
           "sources": {},
           "layers": [],
         });
+
+        assert.equal(style.current, style.history[0]);
       });
 
     });
