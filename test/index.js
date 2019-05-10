@@ -3,5 +3,6 @@ describe("icepick-style", () => {
   require("./source");
   require("./layer");
   require("./ops");
+  require("./hooks");
 });
 
