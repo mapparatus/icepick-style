@@ -106,13 +106,13 @@ describe("ops", () => {
       "sources": {},
       "layers": [],
       "metadata": {
-        "foo": "text",
+        "foo": {"bar": 1},
       }
     });
     assert.equal(style.history.length, 1);
     style.merge({
       "metadata": {
-        "bar": "text",
+        "baz": "text",
       }
     })
     assert.equal(style.history.length, 2);
@@ -121,9 +121,14 @@ describe("ops", () => {
       "sources": {},
       "layers": [],
       "metadata": {
-        "foo": "text",
-        "bar": "text",
+        "foo": {"bar": 1},
+        "baz": "text",
       }
     });
+
+    assert.equal(style.current.sources, style.history[0].sources);
+    assert.equal(style.current.layers, style.history[0].layers);
+    assert.notEqual(style.current.metadata, style.history[0].metadata);
+    assert.equal(style.current.metadata.foo, style.history[0].metadata.foo);
   });
 })

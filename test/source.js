@@ -14,7 +14,7 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.modifySource("test-source", {
+      style.modifySource("test_source", {
         "type": "vector",
         "url": "http://example.com"
       })
@@ -23,7 +23,7 @@ describe("source", () => {
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -31,6 +31,9 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       })
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.sources, style.history[0].sources);
     });
 
     it("new with existing sources", () => {
@@ -46,7 +49,7 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.modifySource("test-source", {
+      style.modifySource("test_source", {
         "type": "vector",
         "url": "http://example.com"
       })
@@ -59,7 +62,7 @@ describe("source", () => {
             "type": "vector",
             "url": "http://example.com"
           },
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -67,13 +70,17 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       })
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.foo, style.history[0].sources.foo);
     });
 
     it("modify", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -82,7 +89,7 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.modifySource("test-source", {
+      style.modifySource("test_source", {
         "type": "vector",
         "url": "http://foo.example.com"
       })
@@ -91,7 +98,7 @@ describe("source", () => {
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://foo.example.com"
           }
@@ -99,13 +106,17 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       })
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.sources.test_source, style.history[0].sources.test_source);
     });
 
     it("noop", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -114,7 +125,7 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.modifySource("test-source", {
+      style.modifySource("test_source", {
         "type": "vector",
         "url": "http://example.com"
       })
@@ -123,7 +134,7 @@ describe("source", () => {
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -131,6 +142,10 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       })
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.test_source, style.history[0].sources.test_source);
     });
   });
 
@@ -140,7 +155,7 @@ describe("source", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -163,7 +178,7 @@ describe("source", () => {
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -171,13 +186,17 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       });
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.test_source, style.history[0].sources.test_source);
     });
 
     it("modify", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -186,13 +205,13 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.renameSource("test-source", "test-source-changed");
+      style.renameSource("test_source", "test_source_changed");
 
       assert.equal(style.history.length, 2);
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source-changed": {
+          "test_source_changed": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -201,13 +220,16 @@ describe("source", () => {
         "zoom": 2
       });
 
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.test_source_changed, style.history[0].sources.test_source);
     });
 
     it("noop", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -216,13 +238,13 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.renameSource("test-source", "test-source");
+      style.renameSource("test_source", "test_source");
 
       assert.equal(style.history.length, 1);
       assert.deepEqual(style.current, {
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           }
@@ -230,6 +252,10 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       });
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.test_source, style.history[0].sources.test_source);
     });
 
   });
@@ -251,14 +277,14 @@ describe("source", () => {
 
       let err;
       try {
-        style.removeSource("test-source");
+        style.removeSource("test_source");
       }
       catch (_err) {
         err = _err;
       }
 
       assert(err);
-      assert.equal(err.message, "Missing source: 'test-source'");
+      assert.equal(err.message, "Missing source: 'test_source'");
       assert.equal(style.history.length, 1);
       assert.deepEqual(style.current, {
         "version": 8,
@@ -271,13 +297,17 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       });
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.foo, style.history[0].sources.foo);
     });
 
     it("valid id", () => {
       const style = new IcepickStyle({
         "version": 8,
         "sources": {
-          "test-source": {
+          "test_source": {
             "type": "vector",
             "url": "http://example.com"
           },
@@ -290,7 +320,7 @@ describe("source", () => {
         "zoom": 2
       });
 
-      style.removeSource("test-source");
+      style.removeSource("test_source");
 
       assert.equal(style.history.length, 2);
       assert.deepEqual(style.current, {
@@ -304,6 +334,10 @@ describe("source", () => {
         "layers": [],
         "zoom": 2
       });
+
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.sources.foo, style.history[0].sources.foo);
     });
 
   });

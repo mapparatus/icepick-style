@@ -28,6 +28,9 @@ describe("layer", () => {
           }
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.layers, style.history[0].layers);
     });
 
     it("new with existing layers", () => {
@@ -61,6 +64,10 @@ describe("layer", () => {
           }
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.layers[0], style.history[0].layers[0]);
     });
 
     it("modify", () => {
@@ -71,6 +78,7 @@ describe("layer", () => {
           {
             "id": "foo",
             "type": "background",
+            "layout": {},
             "paint": {
               "background-color": "rgb(0,0,0)"
             }
@@ -79,6 +87,7 @@ describe("layer", () => {
       });
 
       style.modifyLayer("foo", {
+        "layout": {},
         "paint": {
           "background-color": "rgb(255,255,255)"
         }
@@ -92,12 +101,19 @@ describe("layer", () => {
           {
             "id": "foo",
             "type": "background",
+            "layout": {},
             "paint": {
               "background-color": "rgb(255,255,255)"
             }
           },
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.layers[0], style.history[0].layers[0]);
+      assert.equal(style.current.layers[0].layout, style.history[0].layers[0].layout);
+      assert.notEqual(style.current.layers[0].paint, style.history[0].layers[0].paint);
     });
 
     it("noop", () => {
@@ -135,6 +151,9 @@ describe("layer", () => {
           },
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.layers, style.history[0].layers);
     });
 
   });
@@ -166,6 +185,9 @@ describe("layer", () => {
 
       assert(err);
       assert.equal(err.message, "Missing layer: 'foo'");
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.layers, style.history[0].layers);
     });
 
     it("modify", () => {
@@ -176,6 +198,7 @@ describe("layer", () => {
           {
             "id": "foo",
             "type": "background",
+            "layout": {},
             "paint": {
               "background-color": "rgb(0,0,0)"
             }
@@ -192,12 +215,19 @@ describe("layer", () => {
           {
             "id": "bar",
             "type": "background",
+            "layout": {},
             "paint": {
               "background-color": "rgb(0,0,0)"
             }
           }
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.layers, style.history[0].layers);
+      assert.notEqual(style.current.layers[0], style.history[0].layers[0]);
+      assert.equal(style.current.layers[0].layout, style.history[0].layers[0].layout);
+      assert.equal(style.current.layers[0].paint, style.history[0].layers[0].paint);
     });
 
     it("noop", () => {
@@ -230,6 +260,10 @@ describe("layer", () => {
           }
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.layers[0], style.history[0].layers[0]);
     });
 
   });
@@ -266,6 +300,9 @@ describe("layer", () => {
           }
         ],
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.equal(style.current.layers, style.history[0].layers);
     });
 
     it("valid id", () => {
@@ -319,6 +356,11 @@ describe("layer", () => {
           }
         ]
       })
+
+      assert.equal(style.current.sources, style.history[0].sources);
+      assert.notEqual(style.current.layers, style.history[0].layers);
+      assert.equal(style.current.layers[0], style.history[0].layers[0]);
+      assert.equal(style.current.layers[1], style.history[0].layers[2]);
     });
 
   });
