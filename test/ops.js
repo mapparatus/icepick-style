@@ -65,6 +65,27 @@ describe("ops", () => {
     assert.equal(style.canUndo(), false);
   });
 
+  it("undo() past stack", () => {
+    const style = new IcepickStyle({
+      "version": 8,
+      "sources": {},
+      "layers": [],
+    });
+
+    style.modifyRoot("name", "foo bar");
+    style.undo();
+
+    let err;
+    try {
+      style.undo();
+    }
+    catch (_err) {
+      err = _err;
+    }
+    assert(err);
+    assert.equal(err.message, "No items to undo in stack");
+  });
+
   it("canRedo()", () => {
     const style = new IcepickStyle({
       "version": 8,
@@ -99,6 +120,28 @@ describe("ops", () => {
       "name": "foo bar"
     });
   });
+
+  it("redo() beyond stack", () => {
+    const style = new IcepickStyle({
+      "version": 8,
+      "sources": {},
+      "layers": [],
+    });
+
+    style.modifyRoot("name", "foo bar");
+    style.undo();
+    style.redo();
+
+    let err;
+    try {
+      style.redo();
+    }
+    catch (_err) {
+      err = _err;
+    }
+    assert(err);
+    assert(err.message, "No items to redo in stack");
+  })
 
   it("merge()", () => {
     const style = new IcepickStyle({
