@@ -15,5 +15,12 @@
     "@mapbox/mapbox-gl-style-spec": "^13.6.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
   }
 }
