@@ -36,7 +36,7 @@ describe("hooks", () => {
     });
   });
 
-  it("hook:validate", () => {
+  it("hook:validate errors", () => {
     const style = new IcepickStyle({
       "version": 8,
       "sources": {},
@@ -52,6 +52,22 @@ describe("hooks", () => {
     style.modifyRoot("metadata", {foo: "bar"});
     assert.equal(style.valid, false);
     assert.deepEqual(style.errors, errors);
+  });
+
+  it("hook:validate no errors", () => {
+    const style = new IcepickStyle({
+      "version": 8,
+      "sources": {},
+      "layers": [],
+    });
+
+    style.addHook("validate", (newDoc, currentDoc) => {
+      return null;
+    })
+
+    style.modifyRoot("metadata", {foo: "bar"});
+    assert.equal(style.valid, true);
+    assert.deepEqual(style.errors, []);
   });
 
   describe("hooks:validate/mapbox-gl", () => {
