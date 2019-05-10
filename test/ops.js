@@ -30,6 +30,38 @@ describe("ops", () => {
     });
   });
 
+  describe("constructor([invalid])", () => {
+    it("invalid layers", () => {
+      assert.throws(
+        () => {
+          new IcepickStyle({
+            sources: {},
+            layers: {}
+          })
+        },
+        {
+          name: 'Error',
+          message: 'style.layers must be an array',
+        }
+      )
+    });
+
+    it("invalid sources", () => {
+      assert.throws(
+        () => {
+          new IcepickStyle({
+            sources: [],
+            layers: []
+          })
+        },
+        {
+          name: 'Error',
+          message: 'style.sources must be an object'
+        }
+      )
+    });
+  });
+
   it("canUndo()", () => {
     const style = new IcepickStyle({
       "version": 8,
