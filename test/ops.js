@@ -206,4 +206,16 @@ describe("ops", () => {
     assert.notEqual(style.current.metadata, style.history[0].metadata);
     assert.equal(style.current.metadata.foo, style.history[0].metadata.foo);
   });
+
+  it("chainable", () => {
+    const style = new IcepickStyle();
+    assert.equal(style, style.modifyRoot("foo", {}));
+    assert.equal(style, style.removeRoot("foo"));
+    assert.equal(style, style.modifyLayer("foo", {type: "background"}));
+    assert.equal(style, style.renameLayer("foo", "bar"));
+    assert.equal(style, style.removeLayer("bar"));
+    assert.equal(style, style.modifySource("foo", {type: "raster"}));
+    assert.equal(style, style.renameSource("foo", "bar"));
+    assert.equal(style, style.removeSource("bar"));
+  })
 })
