@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text-summary mocha test/index.js"
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "xo",
+    "test:unit": "nyc mocha test/index.js"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -14,10 +16,13 @@
   "devDependencies": {
     "@mapbox/mapbox-gl-style-spec": "^13.6.0",
     "mocha": "^6.1.4",
-    "nyc": "^14.1.0"
+    "nyc": "^14.1.0",
+    "xo": "^0.24.0"
   },
   "nyc": {
     "check-coverage": true,
+    "report-dir": "artifacts/coverage",
+    "reporter": ["html", "text-summary"],
     "branches": 100,
     "lines": 100,
     "functions": 100,

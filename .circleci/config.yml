@@ -11,9 +11,9 @@ templates:
         key: v1-dependencies-{{ arch }}-{{ checksum "package.json" }}
 
     - run: npm test
-    # - store_artifacts:
-    #     path: ./docs
-    #     destination: /artifacts
+    - store_artifacts:
+        path: ./artifacts
+        destination: /artifacts
 jobs:
   build-linux-node-v8:
     docker:
