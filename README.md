@@ -107,6 +107,28 @@ assert.equal(style.history.length, 1);
 ```
 
 
+## Hooks
+It also comes with a _validate_ hook which will validate the current state of the style and output errors to `style.errors`, see an example below
+
+```
+const IcepickStyle = require('icepick-style');
+const mapboxGlValidateHook = require('icepick-style/hooks/validate/mapbox-gl');
+
+const style = new IcepickStyle();
+style.addHook('validate', mapboxGlValidateHook);
+
+style.addLayer('foo', {
+  type: 'background',
+  paint: 1
+});
+
+assert.deepStrictEqual(
+  style.errors[0].message,
+  'layers[0].paint: object expected, number found'
+);
+```
+
+
 ## FAQ
 
 > Why icepick and not immutable.js
