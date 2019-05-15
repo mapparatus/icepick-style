@@ -16,14 +16,13 @@ Built for the [Maputnik editor](https://github.com/maputnik/editor), but should 
 
 Why does this exist?
 
- - If we have an immutable data structure we can improve rendering performance in react-like UI frameworks by checking object equality
+ - If we have an immutable data structure we can improve rendering performance in UI frameworks that checking object equality when updating the UI (for example React)
  - More robust by having a library to deal with changes
 
 Features include
 
- - All changes get validated against the style spec
- - Helper methods for modifying data specific to the style spec
- - Can validate against any version of style spec
+ - Methods for modifying data specific to the style spec, keeping object mutations to a minimum
+ - In library style specification validation
 
 
 ## Install
@@ -37,28 +36,32 @@ npm install mgljs-contrib/icepick-style --save
 ## API
 General methods
 
+ - `valid` - is the current style valid
+ - `errors` - list of current errors
  - `current` - the current immutable object
  - `history` - array of immutable objects
  - `canUndo()`
  - `undo()`
  - `canRedo()`
  - `redo()`
- - `merge(styleObject)`
+ - `merge(styleObject)` - merge a style into another style
+ - `replace(styleObject)` - replace the style keeping object equality where possible
+ - `addHook(key, fn)` - add a hook (see [hooks](#hooks))
+ - `removeHook(key, fn)` - remove a hook (see [hooks](#hooks))
 
 [MapboxGL spec](https://www.mapbox.com/mapbox-gl-js/style-spec) specific. These methods are chainable
 
- - `modifyRoot(keyPath, modifier)`
+ - `addRoot(keyPath, value)`
+ - `modifyRoot(keyPath, value)`
  - `removeRoot(keyPath)`
- - `modifyLayer(id, modifier)`
+ - `addLayer(id, value)`
+ - `modifyLayer(id, value)`
  - `renameLayer(id, newId)`
  - `removeLayer(id)`
- - `modifySource(id, modifier)`
+ - `addSource(id, value)`
+ - `modifySource(id, value)`
  - `removeSource(id)`
  - `renameSource(id, newId)`
-
-Where `modifier` is either the new value.
-
-Note: These also validate the style after each change
 
 
 ## Usage
@@ -112,16 +115,6 @@ Because
 
  1. It's a "tiny (1kb min/gzipped), zero-dependency library"
  2. It's fast <https://github.com/aearly/icepick-benchmarks>
-
-
-
-## Ideas
-
- - `current` - the current commited state
- - `dirty` - the dirty un-commited state
- - `commit()` - commit the changes to the history
- - `rollback()` - reset dirty state to `current` state
-
 
 
 ## License
