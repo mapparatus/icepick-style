@@ -36,45 +36,45 @@ describe('root', () => {
 	});
 
 	describe('addRoot', () => {
-    it('new', () => {
-      const style = new IcepickStyle({
-        version: 8,
-        sources: {},
-        layers: []
-      });
+		it('new', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: []
+			});
 
-      style.addRoot('name', 'Foo bar');
-      assert.strictEqual(style.history.length, 2);
-      assert.deepStrictEqual(style.current, {
-        version: 8,
-        name: 'Foo bar',
-        sources: {},
-        layers: []
-      });
+			style.addRoot('name', 'Foo bar');
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				name: 'Foo bar',
+				sources: {},
+				layers: []
+			});
 
-      assert.notStrictEqual(style.current, style.history[0]);
-      assert.strictEqual(style.current.sources, style.history[0].sources);
-      assert.strictEqual(style.current.layers, style.history[0].layers);
-    });
+			assert.notStrictEqual(style.current, style.history[0]);
+			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].layers);
+		});
 
-    it('existing', () => {
-      const style = new IcepickStyle({
-        version: 8,
-        sources: {},
-        layers: [],
-        name: "Foo bar"
-      });
+		it('existing', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [],
+				name: 'Foo bar'
+			});
 
-      assert.throws(
-        () => {
-          style.addRoot('name', 'Foo bar');
-        },
-        {
-          message: "Already has root element"
-        }
-      );
-    });
-  })
+			assert.throws(
+				() => {
+					style.addRoot('name', 'Foo bar');
+				},
+				{
+					message: 'Already has root element'
+				}
+			);
+		});
+	});
 
 	describe('modifyRoot', () => {
 		describe('name (string)', () => {

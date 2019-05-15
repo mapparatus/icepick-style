@@ -8,7 +8,7 @@ describe('source', () => {
 			const style = new IcepickStyle({
 				version: 8,
 				sources: {},
-				layers: [],
+				layers: []
 			});
 
 			style.addSource('testSource', {
@@ -25,38 +25,38 @@ describe('source', () => {
 						url: 'http://example.com'
 					}
 				},
-				layers: [],
+				layers: []
 			});
 
 			assert.strictEqual(style.current.layers, style.history[0].layers);
 			assert.notStrictEqual(style.current.sources, style.history[0].sources);
-    });
+		});
 
 		it('new with existing layers', () => {
 			const style = new IcepickStyle({
 				version: 8,
 				layers: [],
 				sources: {
-          testSource: {
-            type: 'vector',
-            url: 'http://example.com'
-          }
-        },
+					testSource: {
+						type: 'vector',
+						url: 'http://example.com'
+					}
+				}
 			});
 
-      assert.throws(
-        () => {
-          style.addSource('testSource', {
-            type: 'vector',
-            url: 'http://example.com'
-          });
-        },
-        {
-          message: "Style already has source named 'testSource'"
-        }
-      );
-    })
-  });
+			assert.throws(
+				() => {
+					style.addSource('testSource', {
+						type: 'vector',
+						url: 'http://example.com'
+					});
+				},
+				{
+					message: 'Style already has source named \'testSource\''
+				}
+			);
+		});
+	});
 
 	describe('modifySource', () => {
 		it('new with no existing sources', () => {
@@ -178,7 +178,7 @@ describe('source', () => {
 					testSource: {
 						type: 'vector',
 						url: 'http://example.com',
-            maxZoom: 2
+						maxZoom: 2
 					}
 				},
 				layers: [],

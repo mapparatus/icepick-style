@@ -29,32 +29,32 @@ describe('layer', () => {
 
 			assert.strictEqual(style.current.sources, style.history[0].sources);
 			assert.notStrictEqual(style.current.layers, style.history[0].layers);
-    });
+		});
 
 		it('new with existing layers', () => {
 			const style = new IcepickStyle({
 				version: 8,
 				sources: {},
 				layers: [
-          {
-            id: "test-layer",
-            type: "background"
-          }
-        ]
+					{
+						id: 'test-layer',
+						type: 'background'
+					}
+				]
 			});
 
-      assert.throws(
-        () => {
-          style.addLayer('test-layer', {
-            type: 'background'
-          });
-        },
-        {
-          message: "Layer already exists"
-        }
-      );
-    })
-  });
+			assert.throws(
+				() => {
+					style.addLayer('test-layer', {
+						type: 'background'
+					});
+				},
+				{
+					message: 'Layer already exists'
+				}
+			);
+		});
+	});
 
 	describe('modifyLayer', () => {
 		it('new no existing layers', () => {
@@ -138,9 +138,9 @@ describe('layer', () => {
 			});
 
 			style.modifyLayer('foo', {
-        id: 'foo',
-        type: 'background',
-        layout: {},
+				id: 'foo',
+				type: 'background',
+				layout: {},
 				paint: {
 					'background-color': 'rgb(255,255,255)'
 				}
@@ -186,7 +186,7 @@ describe('layer', () => {
 					{
 						id: 'foo',
 						type: 'background',
-            layout: {},
+						layout: {},
 						paint: {
 							'background-color': 'rgb(0,0,0)'
 						}
@@ -195,8 +195,8 @@ describe('layer', () => {
 			});
 
 			style.modifyLayer('foo', {
-        id: 'foo',
-        type: 'background',
+				id: 'foo',
+				type: 'background',
 				paint: {
 					'background-color': 'rgb(255,255,255)'
 				}
@@ -245,11 +245,11 @@ describe('layer', () => {
 			});
 
 			style.modifyLayer('foo', {
-        id: 'foo',
-        type: 'background',
-        paint: {
-          'background-color': 'rgb(0,0,0)'
-        }
+				id: 'foo',
+				type: 'background',
+				paint: {
+					'background-color': 'rgb(0,0,0)'
+				}
 			});
 
 			assert.strictEqual(style.history.length, 1);
