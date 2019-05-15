@@ -10,7 +10,7 @@ templates:
           - node_modules
         key: v1-dependencies-{{ arch }}-{{ checksum "package.json" }}
 
-    - run: "yarn test | coveralls"
+    - run: "yarn test | ./node_modules/.bin/coveralls"
     - store_artifacts:
         path: ./artifacts/coverage
         destination: coverage
