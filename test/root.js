@@ -5,7 +5,7 @@ const IcepickStyle = require('..');
 
 describe('root', () => {
 	describe('invalid keys', () => {
-		[['modifyRoot', 'modify'], ['removeRoot', 'remove']].forEach(
+		[['modifyRoot', 'modify'], ['removeRoot', 'remove'], ['addRoot', 'add']].forEach(
 			([fnName, modName]) => {
 				describe(fnName, () => {
 					['layers', 'sources'].forEach(key => {
@@ -34,6 +34,47 @@ describe('root', () => {
 			}
 		);
 	});
+
+	describe('addRoot', () => {
+    it('new', () => {
+      const style = new IcepickStyle({
+        version: 8,
+        sources: {},
+        layers: []
+      });
+
+      style.addRoot('name', 'Foo bar');
+      assert.strictEqual(style.history.length, 2);
+      assert.deepStrictEqual(style.current, {
+        version: 8,
+        name: 'Foo bar',
+        sources: {},
+        layers: []
+      });
+
+      assert.notStrictEqual(style.current, style.history[0]);
+      assert.strictEqual(style.current.sources, style.history[0].sources);
+      assert.strictEqual(style.current.layers, style.history[0].layers);
+    });
+
+    it('existing', () => {
+      const style = new IcepickStyle({
+        version: 8,
+        sources: {},
+        layers: [],
+        name: "Foo bar"
+      });
+
+      assert.throws(
+        () => {
+          style.addRoot('name', 'Foo bar');
+        },
+        {
+          message: "Already has root element"
+        }
+      );
+    });
+  })
 
 	describe('modifyRoot', () => {
 		describe('name (string)', () => {

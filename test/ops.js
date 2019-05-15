@@ -212,11 +212,14 @@ describe('ops', () => {
 
 	it('chainable', () => {
 		const style = new IcepickStyle();
+		assert.strictEqual(style, style.addRoot('foo', {}));
 		assert.strictEqual(style, style.modifyRoot('foo', {}));
 		assert.strictEqual(style, style.removeRoot('foo'));
+		assert.strictEqual(style, style.addLayer('foo', {type: 'background'}));
 		assert.strictEqual(style, style.modifyLayer('foo', {type: 'background'}));
 		assert.strictEqual(style, style.renameLayer('foo', 'bar'));
 		assert.strictEqual(style, style.removeLayer('bar'));
+		assert.strictEqual(style, style.addSource('foo', {type: 'raster'}));
 		assert.strictEqual(style, style.modifySource('foo', {type: 'raster'}));
 		assert.strictEqual(style, style.renameSource('foo', 'bar'));
 		assert.strictEqual(style, style.removeSource('bar'));

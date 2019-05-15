@@ -3,6 +3,59 @@ const assert = require('assert');
 const IcepickStyle = require('..');
 
 describe('layer', () => {
+	describe('addLayer', () => {
+		it('new no existing layers', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: []
+			});
+
+			style.addLayer('test-layer', {
+				type: 'background'
+			});
+
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'test-layer',
+						type: 'background'
+					}
+				]
+			});
+
+			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+    });
+
+		it('new with existing layers', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+          {
+            id: "test-layer",
+            type: "background"
+          }
+        ]
+			});
+
+      assert.throws(
+        () => {
+          style.addLayer('test-layer', {
+            type: 'background'
+          });
+        },
+        {
+          message: "Layer already exists"
+        }
+      );
+    })
+  });
+
 	describe('modifyLayer', () => {
 		it('new no existing layers', () => {
 			const style = new IcepickStyle({
@@ -85,7 +138,9 @@ describe('layer', () => {
 			});
 
 			style.modifyLayer('foo', {
-				layout: {},
+        id: 'foo',
+        type: 'background',
+        layout: {},
 				paint: {
 					'background-color': 'rgb(255,255,255)'
 				}
@@ -123,6 +178,57 @@ describe('layer', () => {
 			);
 		});
 
+		it('modify (remove key)', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'foo',
+						type: 'background',
+            layout: {},
+						paint: {
+							'background-color': 'rgb(0,0,0)'
+						}
+					}
+				]
+			});
+
+			style.modifyLayer('foo', {
+        id: 'foo',
+        type: 'background',
+				paint: {
+					'background-color': 'rgb(255,255,255)'
+				}
+			});
+
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'foo',
+						type: 'background',
+						paint: {
+							'background-color': 'rgb(255,255,255)'
+						}
+					}
+				]
+			});
+
+			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.notStrictEqual(
+				style.current.layers[0],
+				style.history[0].layers[0]
+			);
+			assert.notStrictEqual(
+				style.current.layers[0].paint,
+				style.history[0].layers[0].paint
+			);
+		});
+
 		it('noop', () => {
 			const style = new IcepickStyle({
 				version: 8,
@@ -139,9 +245,11 @@ describe('layer', () => {
 			});
 
 			style.modifyLayer('foo', {
-				paint: {
-					'background-color': 'rgb(0,0,0)'
-				}
+        id: 'foo',
+        type: 'background',
+        paint: {
+          'background-color': 'rgb(0,0,0)'
+        }
 			});
 
 			assert.strictEqual(style.history.length, 1);
