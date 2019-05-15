@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 const assert = require('assert');
 const IcepickStyle = require('..');
-const mapboxGlUpdateHook = require('../hooks/validate/mapbox-gl');
+const mapboxGlValidateHook = require('../hooks/validate/mapbox-gl');
 
 describe('hooks', () => {
 	it('addHook/removeHook()', () => {
@@ -83,7 +83,7 @@ describe('hooks', () => {
 				},
 				{
 					hooks: {
-						validate: [mapboxGlUpdateHook]
+						validate: [mapboxGlValidateHook]
 					}
 				}
 			);
@@ -104,7 +104,7 @@ describe('hooks', () => {
 				layers: []
 			});
 
-			style.addHook('validate', mapboxGlUpdateHook);
+			style.addHook('validate', mapboxGlValidateHook);
 
 			style.modifyLayer('foo', {
 				type: 'background',
