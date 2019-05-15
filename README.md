@@ -110,7 +110,7 @@ assert.equal(style.history.length, 1);
 ## Hooks
 It also comes with a _validate_ hook which will validate the current state of the style and output errors to `style.errors`, see an example below
 
-```
+```js
 const IcepickStyle = require('icepick-style');
 const mapboxGlValidateHook = require('icepick-style/hooks/validate/mapbox-gl');
 
