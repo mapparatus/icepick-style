@@ -27,7 +27,8 @@
     "report-dir": "artifacts/coverage",
     "reporter": [
       "html",
-      "text-summary"
+      "text-summary",
+      "lcov"
     ],
     "branches": 100,
     "lines": 100,
