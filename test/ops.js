@@ -210,6 +210,45 @@ describe('ops', () => {
 		);
 	});
 
+	it('replace()', () => {
+		const style = new IcepickStyle({
+			version: 8,
+			sources: {
+				foo: {
+					type: 'raster'
+				}
+			},
+			layers: [],
+			metadata: {
+				foo: {bar: 1},
+				bar: {test: 1}
+			}
+		});
+		assert.strictEqual(style.history.length, 1);
+		style.replace({
+			metadata: {
+				baz: 'text',
+				bar: {test: 1}
+			}
+		});
+		assert.strictEqual(style.history.length, 2);
+		assert.deepStrictEqual(style.current, {
+			version: 8,
+			sources: {},
+			layers: [],
+			metadata: {
+				baz: 'text',
+				bar: {test: 1}
+			}
+		});
+
+		assert.notStrictEqual(style.current.metadata, style.history[0].metadata);
+		assert.strictEqual(
+			style.current.metadata.bar,
+			style.history[0].metadata.bar
+		);
+	});
+
 	it('chainable', () => {
 		const style = new IcepickStyle();
 		assert.strictEqual(style, style.addRoot('foo', {}));
