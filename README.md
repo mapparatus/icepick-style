@@ -40,10 +40,10 @@ General methods
  - `errors` - list of current errors
  - `current` - the current immutable object
  - `history` - array of immutable objects
- - `canUndo()`
- - `undo()`
- - `canRedo()`
- - `redo()`
+ - `canUndo()` - is there anything to undo in the history stack
+ - `undo()` - move backward in the history stack
+ - `canRedo()` - is there anything to redo in the history stack
+ - `redo()` - move forward in the history stack
  - `merge(styleObject)` - merge a style into another style
  - `replace(styleObject)` - replace the style keeping object equality where possible
  - `addHook(key, fn)` - add a hook (see [hooks](#hooks))
