@@ -52,9 +52,9 @@ describe('root', () => {
 				layers: []
 			});
 
-			assert.notStrictEqual(style.current, style.history[0]);
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.strictEqual(style.current.layers, style.history[0].layers);
+			assert.notStrictEqual(style.current, style.history[0].style);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
 		});
 
 		it('existing', () => {
@@ -94,9 +94,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('modify', () => {
@@ -116,9 +116,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('noop', () => {
@@ -138,9 +138,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.strictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 		});
 
@@ -164,9 +164,9 @@ describe('root', () => {
 					}
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('modify', () => {
@@ -208,16 +208,16 @@ describe('root', () => {
 					}
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 				assert.notStrictEqual(
 					style.current.metadata,
-					style.history[0].metadata
+					style.history[0].style.metadata
 				);
 				assert.strictEqual(
 					style.current.metadata.baz,
-					style.history[0].metadata.baz
+					style.history[0].style.metadata.baz
 				);
 			});
 
@@ -260,7 +260,7 @@ describe('root', () => {
 					}
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 
@@ -282,10 +282,10 @@ describe('root', () => {
 					center: [0.222, 1.222]
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
-				assert.notStrictEqual(style.current.center, style.history[0].center);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
+				assert.notStrictEqual(style.current.center, style.history[0].style.center);
 			});
 
 			it('modify', () => {
@@ -306,12 +306,12 @@ describe('root', () => {
 					center: [0.222, 1.222]
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 
 				// Note: We currently replace arrays if they differ
-				assert.notStrictEqual(style.current.center, style.history[0].center);
+				assert.notStrictEqual(style.current.center, style.history[0].style.center);
 			});
 
 			it('noop ', () => {
@@ -332,7 +332,7 @@ describe('root', () => {
 					center: [0.111, 1.111]
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 
@@ -354,9 +354,9 @@ describe('root', () => {
 					zoom: 2
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('modify', () => {
@@ -377,9 +377,9 @@ describe('root', () => {
 					zoom: 2
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('noop ', () => {
@@ -400,7 +400,7 @@ describe('root', () => {
 					zoom: 2
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 	});
@@ -423,9 +423,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('non existing', () => {
@@ -443,7 +443,7 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 
@@ -466,9 +466,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('non existing', () => {
@@ -486,7 +486,7 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 
@@ -507,9 +507,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('non existing', () => {
@@ -527,7 +527,7 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 
@@ -548,9 +548,9 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.notStrictEqual(style.current, style.history[0]);
-				assert.strictEqual(style.current.sources, style.history[0].sources);
-				assert.strictEqual(style.current.layers, style.history[0].layers);
+				assert.notStrictEqual(style.current, style.history[0].style);
+				assert.strictEqual(style.current.sources, style.history[0].style.sources);
+				assert.strictEqual(style.current.layers, style.history[0].style.layers);
 			});
 
 			it('non existing', () => {
@@ -568,7 +568,7 @@ describe('root', () => {
 					layers: []
 				});
 
-				assert.strictEqual(style.current, style.history[0]);
+				assert.strictEqual(style.current, style.history[0].style);
 			});
 		});
 	});

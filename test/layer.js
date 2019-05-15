@@ -27,8 +27,8 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 		});
 
 		it('new with existing layers', () => {
@@ -80,8 +80,8 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 		});
 
 		it('new with existing layers', () => {
@@ -116,9 +116,9 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.layers[0], style.history[0].layers[0]);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
 		});
 
 		it('modify', () => {
@@ -162,19 +162,19 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 			assert.notStrictEqual(
 				style.current.layers[0],
-				style.history[0].layers[0]
+				style.history[0].style.layers[0]
 			);
 			assert.strictEqual(
 				style.current.layers[0].layout,
-				style.history[0].layers[0].layout
+				style.history[0].style.layers[0].layout
 			);
 			assert.notStrictEqual(
 				style.current.layers[0].paint,
-				style.history[0].layers[0].paint
+				style.history[0].style.layers[0].paint
 			);
 		});
 
@@ -217,15 +217,15 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 			assert.notStrictEqual(
 				style.current.layers[0],
-				style.history[0].layers[0]
+				style.history[0].style.layers[0]
 			);
 			assert.notStrictEqual(
 				style.current.layers[0].paint,
-				style.history[0].layers[0].paint
+				style.history[0].style.layers[0].paint
 			);
 		});
 
@@ -267,8 +267,8 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.strictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
 		});
 	});
 
@@ -298,8 +298,8 @@ describe('layer', () => {
 			assert(err);
 			assert.strictEqual(err.message, 'Missing layer: \'foo\'');
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.strictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
 		});
 
 		it('modify', () => {
@@ -335,19 +335,19 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 			assert.notStrictEqual(
 				style.current.layers[0],
-				style.history[0].layers[0]
+				style.history[0].style.layers[0]
 			);
 			assert.strictEqual(
 				style.current.layers[0].layout,
-				style.history[0].layers[0].layout
+				style.history[0].style.layers[0].layout
 			);
 			assert.strictEqual(
 				style.current.layers[0].paint,
-				style.history[0].layers[0].paint
+				style.history[0].style.layers[0].paint
 			);
 		});
 
@@ -382,9 +382,9 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.layers[0], style.history[0].layers[0]);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
 		});
 	});
 
@@ -420,8 +420,8 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.strictEqual(style.current.layers, style.history[0].layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
 		});
 
 		it('valid id', () => {
@@ -476,10 +476,10 @@ describe('layer', () => {
 				]
 			});
 
-			assert.strictEqual(style.current.sources, style.history[0].sources);
-			assert.notStrictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.layers[0], style.history[0].layers[0]);
-			assert.strictEqual(style.current.layers[1], style.history[0].layers[2]);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
+			assert.strictEqual(style.current.layers[1], style.history[0].style.layers[2]);
 		});
 	});
 });

@@ -201,12 +201,12 @@ describe('ops', () => {
 			}
 		});
 
-		assert.strictEqual(style.current.sources, style.history[0].sources);
-		assert.strictEqual(style.current.layers, style.history[0].layers);
-		assert.notStrictEqual(style.current.metadata, style.history[0].metadata);
+		assert.strictEqual(style.current.sources, style.history[0].style.sources);
+		assert.strictEqual(style.current.layers, style.history[0].style.layers);
+		assert.notStrictEqual(style.current.metadata, style.history[0].style.metadata);
 		assert.strictEqual(
 			style.current.metadata.foo,
-			style.history[0].metadata.foo
+			style.history[0].style.metadata.foo
 		);
 	});
 
@@ -242,10 +242,10 @@ describe('ops', () => {
 			}
 		});
 
-		assert.notStrictEqual(style.current.metadata, style.history[0].metadata);
+		assert.notStrictEqual(style.current.metadata, style.history[0].style.metadata);
 		assert.strictEqual(
 			style.current.metadata.bar,
-			style.history[0].metadata.bar
+			style.history[0].style.metadata.bar
 		);
 	});
 

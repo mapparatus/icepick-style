@@ -28,8 +28,8 @@ describe('source', () => {
 				layers: []
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 		});
 
 		it('new with existing layers', () => {
@@ -85,8 +85,8 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 		});
 
 		it('new with existing sources', () => {
@@ -124,11 +124,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.foo,
-				style.history[0].sources.foo
+				style.history[0].style.sources.foo
 			);
 		});
 
@@ -163,11 +163,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 			assert.notStrictEqual(
 				style.current.sources.testSource,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 
@@ -203,11 +203,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 			assert.notStrictEqual(
 				style.current.sources.testSource,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 
@@ -242,11 +242,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.testSource,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 	});
@@ -287,11 +287,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.testSource,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 
@@ -323,11 +323,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.testSourceChanged,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 
@@ -359,11 +359,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.testSource,
-				style.history[0].sources.testSource
+				style.history[0].style.sources.testSource
 			);
 		});
 	});
@@ -404,11 +404,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.strictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.foo,
-				style.history[0].sources.foo
+				style.history[0].style.sources.foo
 			);
 		});
 
@@ -444,11 +444,11 @@ describe('source', () => {
 				zoom: 2
 			});
 
-			assert.strictEqual(style.current.layers, style.history[0].layers);
-			assert.notStrictEqual(style.current.sources, style.history[0].sources);
+			assert.strictEqual(style.current.layers, style.history[0].style.layers);
+			assert.notStrictEqual(style.current.sources, style.history[0].style.sources);
 			assert.strictEqual(
 				style.current.sources.foo,
-				style.history[0].sources.foo
+				style.history[0].style.sources.foo
 			);
 		});
 	});
