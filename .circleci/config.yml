@@ -12,8 +12,8 @@ templates:
 
     - run: npm test
     - store_artifacts:
-        path: ./artifacts
-        destination: /artifacts
+        path: ./artifacts/coverage
+        destination: coverage
 jobs:
   build-linux-node-v8:
     docker:
