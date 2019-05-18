@@ -54,6 +54,52 @@ describe('layer', () => {
 				}
 			);
 		});
+
+		it('new with existing layers at index', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'before',
+						type: 'background'
+					},
+					{
+						id: 'after',
+						type: 'background'
+					}
+				]
+			});
+
+      style.addLayer('test-layer', {
+        type: 'background'
+      }, 1);
+
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'before',
+						type: 'background'
+					},
+					{
+						id: 'test-layer',
+						type: 'background'
+					},
+					{
+						id: 'after',
+						type: 'background'
+					},
+				]
+			});
+
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
+			assert.strictEqual(style.current.layers[2], style.history[0].style.layers[1]);
+		});
 	});
 
 	describe('modifyLayer', () => {
@@ -482,4 +528,190 @@ describe('layer', () => {
 			assert.strictEqual(style.current.layers[1], style.history[0].style.layers[2]);
 		});
 	});
+
+  describe("moveLayer", () => {
+		it('forward', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+					{
+						id: 'd',
+						type: 'background'
+					},
+					{
+						id: 'e',
+						type: 'background'
+					}
+				]
+			});
+
+      style.moveLayer(1, 3);
+
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'd',
+						type: 'background'
+					},
+					{
+						id: 'e',
+						type: 'background'
+					}
+				]
+			});
+
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
+			assert.strictEqual(style.current.layers[2], style.history[0].style.layers[1]);
+		});
+
+		it('backward', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+					{
+						id: 'd',
+						type: 'background'
+					},
+					{
+						id: 'e',
+						type: 'background'
+					}
+				]
+			});
+
+      style.moveLayer(3, 1);
+
+			assert.strictEqual(style.history.length, 2);
+			assert.deepStrictEqual(style.current, {
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'd',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+					{
+						id: 'e',
+						type: 'background'
+					}
+				]
+			});
+
+			assert.strictEqual(style.current.sources, style.history[0].style.sources);
+			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
+			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
+			assert.strictEqual(style.current.layers[2], style.history[0].style.layers[1]);
+		});
+  });
+
+  describe("getLayerById", () => {
+		it('valid', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+				]
+			});
+
+      const out = style.getLayerById('b');
+      assert.deepStrictEqual(out, {
+        id: 'b',
+        type: 'background'
+      });
+
+			assert.strictEqual(style.history.length, 1);
+		});
+
+		it('invalid', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [
+					{
+						id: 'a',
+						type: 'background'
+					},
+					{
+						id: 'b',
+						type: 'background'
+					},
+					{
+						id: 'c',
+						type: 'background'
+					},
+				]
+			});
+
+      const out = style.getLayerById('f');
+      assert.strictEqual(out, undefined);
+			assert.strictEqual(style.history.length, 1);
+		});
+  })
 });

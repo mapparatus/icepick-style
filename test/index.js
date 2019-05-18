@@ -6,4 +6,5 @@ describe('icepick-style', () => {
 	require('./layer');
 	require('./ops');
 	require('./hooks');
+	require('./events');
 });
