@@ -4,8 +4,10 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run test:lint && npm run test:unit",
+    "test:ci": "npm run test:lint && npm run test:ci:unit",
     "test:lint": "xo",
-    "test:unit": "nyc mocha test/index.js"
+    "test:unit": "nyc mocha test/index.js",
+    "test:ci:unit": "nyc --reporter=text-lcov mocha test/index.js"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -28,8 +30,7 @@
     "report-dir": "artifacts/coverage",
     "reporter": [
       "html",
-      "text-summary",
-      "text-lcov"
+      "text-summary"
     ],
     "branches": 100,
     "lines": 100,
