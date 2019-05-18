@@ -5,33 +5,37 @@ const IcepickStyle = require('..');
 
 describe('events', () => {
 	describe('change', () => {
-    it("fired on change", () => {
-      const style = new IcepickStyle({
-        version: 8,
-        sources: {},
-        layers: []
-      });
+		it('fired on change', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: []
+			});
 
-      let called = false;
-      style.on('change', () => called = true);
+			let called = false;
+			style.on('change', () => {
+				called = true;
+			});
 
-      style.modifyRoot('zoom', 3);
-      assert.equal(called, true);
-    })
+			style.modifyRoot('zoom', 3);
+			assert.strictEqual(called, true);
+		});
 
-    it("not fired when no change", () => {
-      const style = new IcepickStyle({
-        version: 8,
-        sources: {},
-        layers: [],
-        zoom: 3
-      });
+		it('not fired when no change', () => {
+			const style = new IcepickStyle({
+				version: 8,
+				sources: {},
+				layers: [],
+				zoom: 3
+			});
 
-      let called = false;
-      style.on('change', () => called = true);
+			let called = false;
+			style.on('change', () => {
+				called = true;
+			});
 
-      style.modifyRoot('zoom', 3);
-      assert.equal(called, false);
-    })
-  });
+			style.modifyRoot('zoom', 3);
+			assert.strictEqual(called, false);
+		});
+	});
 });
