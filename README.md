@@ -42,6 +42,7 @@ General methods
  - `errors` - list of current errors
  - `current` - the current immutable object
  - `history` - array of immutable objects
+ - `stack(idx)` - get a item from the history stack, supports negative index lookups to start from the end of history
  - `canUndo()` - is there anything to undo in the history stack
  - `undo()` - move backward in the history stack
  - `canRedo()` - is there anything to redo in the history stack

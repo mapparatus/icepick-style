@@ -210,6 +210,27 @@ describe('ops', () => {
 		);
 	});
 
+	it('stack(idx)', () => {
+		const style = new IcepickStyle({
+			layers: [],
+			sources: {},
+			zoom: 10
+		});
+
+		style.modifyRoot('zoom', 11);
+		style.modifyRoot('zoom', 12);
+		style.modifyRoot('zoom', 13);
+
+		assert.strictEqual(style.stack(-1).style.zoom, 12);
+		assert.strictEqual(style.stack(-2).style.zoom, 11);
+		assert.strictEqual(style.stack(-3).style.zoom, 10);
+
+		assert.strictEqual(style.stack(0).style.zoom, 10);
+		assert.strictEqual(style.stack(1).style.zoom, 11);
+		assert.strictEqual(style.stack(2).style.zoom, 12);
+		assert.strictEqual(style.stack(3).style.zoom, 13);
+	});
+
 	it('replace()', () => {
 		const style = new IcepickStyle({
 			version: 8,
