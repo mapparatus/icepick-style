@@ -574,11 +574,11 @@ describe('layer', () => {
 						type: 'background'
 					},
 					{
-						id: 'b',
+						id: 'd',
 						type: 'background'
 					},
 					{
-						id: 'd',
+						id: 'b',
 						type: 'background'
 					},
 					{
@@ -591,7 +591,7 @@ describe('layer', () => {
 			assert.strictEqual(style.current.sources, style.history[0].style.sources);
 			assert.notStrictEqual(style.current.layers, style.history[0].style.layers);
 			assert.strictEqual(style.current.layers[0], style.history[0].style.layers[0]);
-			assert.strictEqual(style.current.layers[2], style.history[0].style.layers[1]);
+			assert.strictEqual(style.current.layers[3], style.history[0].style.layers[1]);
 		});
 
 		it('backward', () => {
