@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "lib/index.js",
   "scripts": {
+    "build": "exit 0",
     "test": "npm run test:lint && npm run test:unit",
     "test:ci": "npm run test:lint && npm run test:ci:unit",
     "test:lint": "xo",
