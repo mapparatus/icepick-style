@@ -19,6 +19,7 @@
     "@mapbox/mapbox-gl-style-spec": "^13.15.0",
     "coveralls": "^3.1.0",
     "mocha": "^7.1.2",
+    "node": "^14.2.0",
     "nyc": "^15.0.1",
     "xo": "^0.30.0"
   },
